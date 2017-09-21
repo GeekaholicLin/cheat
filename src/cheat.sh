@@ -26,7 +26,9 @@ fi
 
 ##  Cheat path
 if [[ -z $CHEATPATH ]]; then
-    CHEATPATH="${DEFAULT_CHEAT_DIR}"
+    CHEATPATH="${DEFAULT_CHEAT_DIR}:${CHEAT_SYS_DIR}/sheets"
+  else
+    CHEATPATH="${DEFAULT_CHEAT_DIR}:${CHEATPATH}"
 fi
 
 ##  Variable to determine if they want to compress, 0 by default
@@ -409,7 +411,13 @@ if [ "$1" = "-e" ] || [ "$1" = "--edit" ]; then
             if [[ -e "${F}/${arg}" ]]; then
                 if file -b "${F}/${arg}" | grep text > /dev/null; then
                     let existing=$(( $existing + 1 ))
-                    filesToEdit+=("${F}/${arg}")
+                    if [[ ! -e "$DEFAULT_CHEAT_DIR/${arg}" ]]; then
+                      echo "${arg} does not exit in the ${DEFAULT_CHEAT_DIR}, now copy one from ${F}/${arg}"
+                      cp "${F}/${arg}" "${DEFAULT_CHEAT_DIR}/${arg}"
+                    fi
+
+                    filesToEdit+=("${DEFAULT_CHEAT_DIR}/${arg}")
+                    break;
                 else
                     echo "WARNING:  Not a text file:  '$arg'"
                 fi
@@ -525,7 +533,7 @@ declare RESULTS_ARRAY=()
 while read DIR; do
     ##  If we hit an 'exact' match
     if [[ -e "$DIR/$1" ]]; then
-        echo -e "$1\n"
+        echo -e "$1 in $DIR/$1:\n"
         "$CHEAT_TEXT_VIEWER" "$DIR/$1"
         exit 0
     elif [[ -e "$DIR/${1}.gz" ]]; then
@@ -533,10 +541,8 @@ while read DIR; do
         gunzip --stdout "$DIR/${1}.gz" | "$CHEAT_TEXT_VIEWER" >& 1
         exit 0
     fi
-
     ##   grab the number of 'hits' given by the user's query
     DIR_RESULTS=$(ls "$DIR" | grep -i "$1" | wc -l)
-
     if [[ $DIR_RESULTS -gt 0 ]]; then
         while read R; do
             RESULTS_ARRAY+=("${R}:${DIR}")
@@ -569,7 +575,6 @@ elif [ $RESULTS -gt 1 ]; then
     for arg in ${@:1}; do
         echo "$arg:"
         echo ""
-
         for R in ${RESULTS_ARRAY[@]}; do
             echo "  $R" | cut -f1 -d':'
         done
