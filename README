@@ -1,6 +1,12 @@
 ================================================================================
-    cheat.sh        |   version 1.22    |   GPL v3 (see LICENSE)    | 2017-05-01
-    James Hendrie   |   hendrie.james@gmail.com
+    cheat.sh(based version) |   version 1.22    |   GPL v3 (see LICENSE)    | 2017-05-01
+    James Hendrie          |   hendrie.james@gmail.com
+================================================================================
+
+
+================================================================================
+    cheat.sh(custom version) |   version 1.22    |   GPL v3 (see LICENSE)    | 2017-09-21
+    GeekaholicLin            |   geekaholiclin@gmail.com
 ================================================================================
 
 TOC:
@@ -8,6 +14,7 @@ TOC:
     2.  Install / Uninstall
     3.  How do I use it?
     4.  Who made it?
+    5.  What is new in custom version(this repo)?
 
 
 1.  What is this?
@@ -94,10 +101,31 @@ TOC:
 
 4.  Who made it?
 
-    This version:   James Hendrie
+    Custom version: GeekaholicLin
+                        geekaholiclin@gmail.com
+                        https://github.com/GeekaholicLin
+
+    Based version:   James Hendrie
                         hendrie.james@gmail.com
                         https://github.com/jahendrie
 
     Main version:   Chris Lane
                         chris@chris-allen-lane.com
                         https://github.com/chrisallenlane
+
+5. What is new in custom version(this repo)?
+   
+   Thank James Hendrie for this awesome tool.
+   
+   I have changed something in src/cheat.sh depending on my own status.
+
+   You can use it in git-for-windows instead of the well-known python version maked by chrisallenlane,which can not work well in Windows.
+
+   The changes can be list as following:
+   - Copy the file when it exits in CHEATPATH but not in DEFAULT_CHEAT_PATH
+   - Change CHEATPATH always to includes DEFAULT_CHEAT_PATH
+   - Use offical cheet sheets and DEFAULT_CHEAT_PATH sheets as default
+   - Add some more hints when you edit a exiting cheat or cheat a cheat
+
+  
+
