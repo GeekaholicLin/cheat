@@ -119,14 +119,16 @@ TOC:
    
    I have changed something in src/cheat.sh depending on my own status.
 
-   You can use it in git-for-windows instead of the well-known python version maked by chrisallenlane,which can not work well in Windows.
+   You can use it in git-for-windows instead of the well-known python version maked by chrisallenlane,
+   which can not work well in Windows.
 
    The changes can be list as following:
    - Copy the file when it exits in CHEATPATH but not in DEFAULT_CHEAT_DIR(defualt $HOME/.cheat)
    - Change CHEATPATH always to includes DEFAULT_CHEAT_DIR
    - Use offical cheet sheets and DEFAULT_CHEAT_DIR sheets as default
-   (If the CHEATPATH variable is set, cheats come from DEFAULT_CHEAT_DIR and CHEATPATH you have set.Or CHEATPATH will includes DEFAULT_CHEAT_DIR cheets and this repo official data.)
    - Add some more hints when you edit a exiting cheat or cheat a cheat
 
+   (If the CHEATPATH variable is set, cheats come from DEFAULT_CHEAT_DIR and CHEATPATH you have set.
+   Or CHEATPATH will includes DEFAULT_CHEAT_DIR cheets and this repo official data.)
   
 
